@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Write code to load/store the 12 experiments (you may hard-code them 
  * in a list/array/struct or comparable structure). 
@@ -26,5 +29,34 @@
  */
 
 public class GreedyStrategies{
+	public static Results highestRatingFirst(List<Experiment> experiment,int capacity) {
+		int totalWeight = 0;
+		int totalRating = 0;
+		List<Experiment> selected = new ArrayList<>();
+		
+		//TODO
+		
+		return new Results(selected, totalWeight, totalRating);
+		
+	}
 	
+	public static Results lightestRatingFirst(List<Experiment> experiment,int capacity) {
+		int totalWeight = 0;
+		int totalRating = 0;
+		List<Experiment> selected = new ArrayList<>();
+
+		//TODO
+		
+		return new Results(selected, totalWeight, totalRating);
+	}
+	
+	public static Results ratingToWeightRatio(List<Experiment> experiment,int capacity) {
+		int totalWeight = 0;
+		int totalRating = 0;
+		List<Experiment> selected = new ArrayList<>();
+		
+		//TODO
+		
+		return new Results(selected, totalWeight, totalRating);
+	}
 }

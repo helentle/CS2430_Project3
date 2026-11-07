@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * output summarizing:
  * - Results of all 3 greedy strategies (Part 1)
@@ -11,4 +13,11 @@
  */
 public class Comparison{
 	
+	public static void printSummary(
+			Results highestRating,
+			Results lightest,
+			Results bestRatio,
+			List<Results> bruteForceResults) {
+		//TODO
+	}
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * With 12 items, there are 212 = 4096 possible subsets.
  * 
@@ -13,5 +16,15 @@
  *  @author Helen Le, Santiago Valenzuela Alvarez, Ana Hurtado Rodriguez
  */
 public class BruteForce{
-	
+	public static List<Experiment> topThree(List<Experiment> experiment,int capacity) {
+		int totalWeight = 0;
+		int totalRating = 0;
+		List<Experiment> selected = new ArrayList<>();
+
+		
+		//TODO
+		
+		return selected;
+		
+	}
 }

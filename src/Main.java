@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Main implementation
  * 
@@ -5,8 +8,28 @@
  */
 public class Main {
 
+	public static int capacity = 700;
+	
+	public static List<Experiment> loadExperiments() {
+        List<Experiment> experiments = new ArrayList<>();
+
+        // TODO
+
+        return experiments;
+    }
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		List<Experiment> experiments = loadExperiments();
+		
+		//greedy strategies
+		Results highestRating = GreedyStrategies.highestRatingFirst(experiments,capacity);
+		Results lightest = GreedyStrategies.lightestRatingFirst(experiments,capacity);
+		Results bestRatio = GreedyStrategies.ratingToWeightRatio(experiments,capacity);
+
+		//brute force
+		List<Experiment> bruteForceResults = BruteForce.topThree(experiments,capacity);
+		
+		// TODO
 
 	}
 
