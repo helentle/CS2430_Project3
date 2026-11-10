@@ -20,9 +20,17 @@ public class BruteForce{
 		int totalWeight = 0;
 		int totalRating = 0;
 		List<Experiment> selected = new ArrayList<>();
-
+		//generate all possible experiment subsets while tracking weight & rating TODO
 		
-		//TODO
+		//Change order TODO:
+        //	1.  if selected = 2,3, or 7, if 2 && 3 or 2 && 7 or 3 && 7 are in experimentCopy,
+        //		skip and select next experiment
+        //	2.  if 6 and 12 are selected, subtract 7kg from totalWeight
+        //	3.  if 11 is not in experimentCopy, do not add 11a
+        
+		//Choose and display 3 highest rated valid subsets TODO
+		
+		//Output experiment, totalWeight and totalRating TODO
 		
 		return selected;
 		

@@ -10,8 +10,23 @@ public class Main {
 
 	public static int capacity = 700;
 	
+	//creates a list of experiments
 	public static List<Experiment> loadExperiments() {
         List<Experiment> experiments = new ArrayList<>();
+
+        experiments.add(new Experiment("Cloud Patterns", 36, 5));
+        experiments.add(new Experiment("Solar Flares", 264, 9));
+        experiments.add(new Experiment("Solar Power", 188, 6));
+        experiments.add(new Experiment("Binary Stars", 203, 8));
+        experiments.add(new Experiment("Relativity", 104, 8));
+        experiments.add(new Experiment("Seed Viability", 7, 4));
+        experiments.add(new Experiment("Sun Spots", 90, 2));
+        experiments.add(new Experiment("Mice Tumors", 65, 8));
+        experiments.add(new Experiment("Microgravity Plant Growth", 75, 5));
+        experiments.add(new Experiment("Micrometeorites", 170, 9));
+        experiments.add(new Experiment("Cosmic Rays (Primary Band)", 80, 7));
+        experiments.add(new Experiment("Cosmic Rays (Secondary Band)", 10, 5));
+        experiments.add(new Experiment("Yeast Fermentation", 27, 4));
 
         // TODO
 
