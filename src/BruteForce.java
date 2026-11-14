@@ -33,13 +33,16 @@ public class BruteForce{
 		List<Results> topThree = new ArrayList<>(validResults.subList(0, highest3));
 		
 		//Output experiment, totalWeight and totalRating
-		System.out.println("Top 3 Brute Force Combinations:");
+		System.out.println("================Top 3 Brute Force Combinations================");
 		for (int i = 0; i < topThree.size(); i++) {
 			Results result = topThree.get(i);
 			
-			System.out.println("\nRank " + (i+1));
+			System.out.println("\n---------Rank " + (i+1) + "---------");
 			
-			System.out.println("Experiments: " + result.getSelected());
+			System.out.println("Experiments: \n");
+			for (Experiment el : result.getSelected()) {
+				System.out.println(el);
+			}
 	        System.out.println("Total Weight: " + result.getTotalWeight());
 	        System.out.println("Total Rating: " + result.getTotalRating());
 	     }		

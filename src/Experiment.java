@@ -36,6 +36,10 @@ public class Experiment {
 	public int getRating() {
 		return rating;
 	}
+	@Override
+	public String toString() {
+		return "[Experiment: " + name + " | weight: " + weight + " | rating: " + rating + "]\n";
+	}
 
 	
 }
