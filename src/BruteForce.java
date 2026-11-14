@@ -16,23 +16,82 @@ import java.util.List;
  *  @author Helen Le, Santiago Valenzuela Alvarez, Ana Hurtado Rodriguez
  */
 public class BruteForce{
-	public static List<Experiment> topThree(List<Experiment> experiment,int capacity) {
-		int totalWeight = 0;
-		int totalRating = 0;
+	public static List<Results> topThree(List<Experiment> experiment,int capacity) {
+		
+		List<Results> validResults = new ArrayList<>();
+		
 		List<Experiment> selected = new ArrayList<>();
-		//generate all possible experiment subsets while tracking weight & rating TODO
 		
-		//Change order TODO:
-        //	1.  if selected = 2,3, or 7, if 2 && 3 or 2 && 7 or 3 && 7 are in experimentCopy,
-        //		skip and select next experiment
-        //	2.  if 6 and 12 are selected, subtract 7kg from totalWeight
-        //	3.  if 11 is not in experimentCopy, do not add 11a
-        
-		//Choose and display 3 highest rated valid subsets TODO
+		//generate all possible experiment subsets while tracking weight & rating
+		generateSubsets(experiment, 0, selected, validResults, capacity);
 		
-		//Output experiment, totalWeight and totalRating TODO
+		//sort by highest rating
+		validResults.sort((a, b) -> Integer.compare(b.getTotalRating(),a.getTotalRating()));
 		
-		return selected;
+		//get top 3
+		int highest3 = Math.min(3, validResults.size());
+		List<Results> topThree = new ArrayList<>(validResults.subList(0, highest3));
+		
+		//Output experiment, totalWeight and totalRating
+		System.out.println("Top 3 Brute Force Combinations:");
+		for (int i = 0; i < topThree.size(); i++) {
+			Results result = topThree.get(i);
+			
+			System.out.println("\nRank " + (i+1));
+			
+			System.out.println("Experiments: " + result.getSelected());
+	        System.out.println("Total Weight: " + result.getTotalWeight());
+	        System.out.println("Total Rating: " + result.getTotalRating());
+	     }		
+		
+		return topThree;
+	}
+	
+	private static void generateSubsets(List<Experiment> experiment, int index, List<Experiment> selected, 
+			List<Results> validResults, int capacity) {
+		if (index == experiment.size()) {
+			
+			boolean valid = true;
+			
+			for (Experiment current : selected) {
+				List<Experiment> otherExperiments = new ArrayList<>(selected);
+				otherExperiments.remove(current);
+				
+				//does not include subsets that do not pass change order requirements
+				if(!GreedyStrategies.passesChangeOrder(current, otherExperiments)) {
+					valid = false;
+					break;
+				}
+			}
+			
+			if (!valid) {
+				return;
+			}
+			
+			//calculates total weight based on change order requirements
+			int totalWeight = GreedyStrategies.getFinalWeight(selected);
+			
+			int totalRating = 0;
+			
+			for(Experiment current : selected) {
+				totalRating += current.getRating();
+			}
+			
+			//save subsets within capacity
+			if (totalWeight <= capacity) {
+				validResults.add(new Results(new ArrayList<>(selected),totalWeight,totalRating));
+			}
+			return;
+		}
+		//save current experiment that passes all requirements
+		selected.add(experiment.get(index));
+		generateSubsets(experiment,index + 1, selected, validResults,capacity);
+		
+		//remove experiment
+		selected.remove(selected.size()-1);
+		
+		//skip current
+		generateSubsets(experiment,index+1,selected,validResults,capacity);
 		
 	}
 }

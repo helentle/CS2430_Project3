@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class Main {
 
-	public static int capacity = 700;
 	
 	//creates a list of experiments
 	public static List<Experiment> loadExperiments() {
@@ -28,12 +27,12 @@ public class Main {
         experiments.add(new Experiment("Cosmic Rays (Secondary Band)", 10, 5));
         experiments.add(new Experiment("Yeast Fermentation", 27, 4));
 
-        // TODO
-
         return experiments;
     }
 	
 	public static void main(String[] args) {
+		int capacity = 700;
+		
 		List<Experiment> experiments = loadExperiments();
 		
 		//greedy strategies
@@ -42,10 +41,10 @@ public class Main {
 		Results bestRatio = GreedyStrategies.ratingToWeightRatio(experiments,capacity);
 
 		//brute force
-		List<Experiment> bruteForceResults = BruteForce.topThree(experiments,capacity);
+		List<Results> bruteForceResults = BruteForce.topThree(experiments,capacity);
 		
-		// TODO
-
+		//compare output
+		Comparison.printSummary(highestRating, lightest, bestRatio, bruteForceResults);
 	}
 
 }

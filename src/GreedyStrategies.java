@@ -83,17 +83,37 @@ public class GreedyStrategies{
 	}
 	
 	public static Results ratingToWeightRatio(List<Experiment> experiment,int capacity) {
-		int totalWeight = 0;
 		int totalRating = 0;
 		List<Experiment> selected = new ArrayList<>();
+		List<Experiment> experimentCopy = new ArrayList<>(experiment);
+
+		//sort experiments by highest rating-to-weight ratio
+		experimentCopy.sort((a, b) ->
+        Double.compare(
+            (double) b.getRating() / b.getWeight(),
+            (double) a.getRating() / a.getWeight()
+        )
+        );	
 		
-		//TODO
+		for (Experiment current : experimentCopy) {
+			
+			//Temp list with all selected experiments and 
+			//the current experiment being checked
+			List<Experiment> testSelection = new ArrayList<>(selected);
+	        testSelection.add(current);
+	        
+			if ((getFinalWeight(testSelection) <= capacity) && passesChangeOrder(current, selected)) {
+				
+		        selected.add(current);
+		        totalRating += current.getRating();
+			}
+		}
 		
-		return new Results(selected, totalWeight, totalRating);
+		return new Results(selected, getFinalWeight(selected), totalRating);
 	}
 	
 	//method that checks for change order requirements
-	private static boolean passesChangeOrder(Experiment candidate, List<Experiment> selected) {
+	static boolean passesChangeOrder(Experiment candidate, List<Experiment> selected) {
 		
 		//Initializing variables for checking for experiments already chosen
 		boolean has2 = false;
@@ -103,36 +123,37 @@ public class GreedyStrategies{
 		
 		//Check to see if 2, 3, 7, and 11 are present
 		for (Experiment experiment : selected) {
-			if (experiment.getName() == "2") has2 = true;
-			if (experiment.getName() == "3") has3 = true;
-			if (experiment.getName() == "7") has7 = true;
-			if (experiment.getName() == "11") has11 = true;
+			if (experiment.getName().equals("2")) has2 = true;
+			if (experiment.getName().equals("3")) has3 = true;
+			if (experiment.getName().equals("7")) has7 = true;
+			if (experiment.getName().equals("11")) has11 = true;
 		}
 		
 		//if selected = 2,3, or 7, if 2 && 3 or 2 && 7 or 3 && 7 are in experimentCopy,
         //do not select experiment
-		if (candidate.getName() == "2" && (has3 && has7))
+		if (candidate.getName().equals("2") && (has3 && has7))
 			return false;
-		if (candidate.getName() == "3" && (has2 && has7))
+		if (candidate.getName().equals("3") && (has2 && has7))
 			return false;
-		if (candidate.getName() == "7" && (has3 && has2))
+		if (candidate.getName().equals("7") && (has3 && has2))
 			return false;
 		
 		//if selected = 11a and 11 is not included, do not select 11a
-		if(candidate.getName() == "11a" && !has11)
+		if(candidate.getName().equals("11a") && !has11)
 			return false;
 		
 		return true;
 	}
 	
-	private static int getFinalWeight(List<Experiment> selected) {
+	//implements change order if 6 and 12 are selected, subtract 7 kg
+	static int getFinalWeight(List<Experiment> selected) {
 		int totalWeight = 0;
 		boolean has6 = false;
 		boolean has12 = false;
 		
 		for(Experiment experiment : selected) {
-			if (experiment.getName() == "6") has6 = true;
-			if (experiment.getName() == "12") has12 = true;
+			if (experiment.getName().equals("6")) has6 = true;
+			if (experiment.getName().equals("12")) has12 = true;
 			
 	        totalWeight += experiment.getWeight();
 		}

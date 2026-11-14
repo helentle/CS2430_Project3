@@ -18,6 +18,44 @@ public class Comparison{
 			Results lightest,
 			Results bestRatio,
 			List<Results> bruteForceResults) {
-		//TODO
+		
+		Results best = bruteForceResults.get(0);
+		
+		System.out.println("Comparison Summary Output");
+		
+		//Greedy results
+		printResult("Highest Rating First", highestRating, best);
+        printResult("Lightest First", lightest, best);
+        printResult("Rating-to-Weight Ratio", bestRatio, best);
+
+        //Bruteforce
+        System.out.println("\nBest Solution");
+        System.out.println("Experiments: " + best.getSelected());
+        System.out.println("Total Weight: " + best.getTotalWeight());
+        System.out.println("Total Rating: " + best.getTotalRating());
+
+        System.out.println("\nSummary");
+        compareStrategy("Highest Rating First", highestRating, best);
+        compareStrategy("Lightest First", lightest, best);
+        compareStrategy("Rating-to-Weight Ratio", bestRatio, best);
 	}
+	private static void printResult(
+            String strategy, Results result, Results optimal) {
+
+        System.out.println("\n" + strategy);
+        System.out.println("Experiments: " + result.getSelected());
+        System.out.println("Total Weight: " + result.getTotalWeight());
+        System.out.println("Total Rating: " + result.getTotalRating());
+    }
+	private static void compareStrategy(
+            String strategy, Results result, Results best) {
+
+        if (result.getTotalRating() == best.getTotalRating()) {
+            System.out.println(strategy + ": MATCHED OPTIMAL");
+        } else {
+            System.out.println(strategy + ": DID NOT MATCH OPTIMAL");
+            System.out.println("Rating difference: "
+                    + (best.getTotalRating() - result.getTotalRating()));
+        }
+    }
 }
