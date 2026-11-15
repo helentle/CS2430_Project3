@@ -2,10 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * With 12 items, there are 212 = 4096 possible subsets.
  * 
- * Write code that:
- *  - Generates all 4096 possible subsets of experiments.
+ *  - Generates all 8,192 possible subsets of experiments.
  *  - For each subset, computes total weight and total rating.
  *  - Identifies and displays the three highest-rated valid subsets 
  *    (total weight ≤ 700 kg), clearly indicating which one is optimal.

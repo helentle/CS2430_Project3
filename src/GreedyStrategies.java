@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write code to load/store the 12 experiments (you may hard-code them 
- * in a list/array/struct or comparable structure). 
+ * Write code to load/store the 13 experiments  
  * 
  * Implement three separate functions/methods/subroutines, each of which 
  * builds a payload without exceeding 700 kg:
