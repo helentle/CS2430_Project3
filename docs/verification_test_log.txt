@@ -1,0 +1,134 @@
+=== Knapsack Verification Suite (original source, no modifications) ===
+T01 | PASS | Main input count | actual=13, new secondary-band entry present
+T02 | PASS | All input weights, ratings and names checked | matches original table plus 10 kg secondary-band entry
+T03 | PASS | Highest-rating weight/rating totals | weight=690, rating=40
+T04 | FAIL | Lightest-first weight/rating totals | weight=664, rating=57
+T05 | FAIL | Ratio-first weight/rating totals | weight=664, rating=57
+T06 | PASS | No duplicates in greedy selections | all selections distinct
+=== Brute force program output follows ===
+================Top 3 Brute Force Combinations================
+
+---------Rank 1---------
+Experiments: 
+
+[Experiment: Cloud Patterns | weight: 36 | rating: 5]
+
+[Experiment: Relativity | weight: 104 | rating: 8]
+
+[Experiment: Seed Viability | weight: 7 | rating: 4]
+
+[Experiment: Sun Spots | weight: 90 | rating: 2]
+
+[Experiment: Mice Tumors | weight: 65 | rating: 8]
+
+[Experiment: Microgravity Plant Growth | weight: 75 | rating: 5]
+
+[Experiment: Micrometeorites | weight: 170 | rating: 9]
+
+[Experiment: Cosmic Rays (Primary Band) | weight: 80 | rating: 7]
+
+[Experiment: Cosmic Rays (Secondary Band) | weight: 10 | rating: 5]
+
+[Experiment: Yeast Fermentation | weight: 27 | rating: 4]
+
+Total Weight: 664
+Total Rating: 57
+
+---------Rank 2---------
+Experiments: 
+
+[Experiment: Cloud Patterns | weight: 36 | rating: 5]
+
+[Experiment: Solar Power | weight: 188 | rating: 6]
+
+[Experiment: Relativity | weight: 104 | rating: 8]
+
+[Experiment: Seed Viability | weight: 7 | rating: 4]
+
+[Experiment: Mice Tumors | weight: 65 | rating: 8]
+
+[Experiment: Micrometeorites | weight: 170 | rating: 9]
+
+[Experiment: Cosmic Rays (Primary Band) | weight: 80 | rating: 7]
+
+[Experiment: Cosmic Rays (Secondary Band) | weight: 10 | rating: 5]
+
+[Experiment: Yeast Fermentation | weight: 27 | rating: 4]
+
+Total Weight: 687
+Total Rating: 56
+
+---------Rank 3---------
+Experiments: 
+
+[Experiment: Cloud Patterns | weight: 36 | rating: 5]
+
+[Experiment: Binary Stars | weight: 203 | rating: 8]
+
+[Experiment: Relativity | weight: 104 | rating: 8]
+
+[Experiment: Seed Viability | weight: 7 | rating: 4]
+
+[Experiment: Sun Spots | weight: 90 | rating: 2]
+
+[Experiment: Mice Tumors | weight: 65 | rating: 8]
+
+[Experiment: Microgravity Plant Growth | weight: 75 | rating: 5]
+
+[Experiment: Cosmic Rays (Primary Band) | weight: 80 | rating: 7]
+
+[Experiment: Cosmic Rays (Secondary Band) | weight: 10 | rating: 5]
+
+[Experiment: Yeast Fermentation | weight: 27 | rating: 4]
+
+Total Weight: 697
+Total Rating: 56
+=== End brute force program output ===
+T07 | PASS | Three brute-force results returned | actual=3
+T08 | FAIL | Brute-force totals apply stated 7 kg discount | rank 1 expected adjusted weight=657, reported=664
+T09 | PASS | Top-three sorted descending | ratings=57,56,56
+T10 | PASS | All top-three subsets distinct | none is duplicated
+T11 | FAIL | Best result matches independent rule-aware oracle | expected=695 kg / 58 points; observed=664 kg / 57 points
+T12 | PASS | Comparison labels agree with calculated differences | summary matches current returned ratings
+T13 | PASS | Comparison displays totals and best result | weight/rating shown
+T14 | PASS | Highest-rating first prioritizes higher rated item | selected A (rating=10, 3 kg) rather than B+C
+T15 | PASS | Exactly 700 kg accepted | actual=700
+T16 | PASS | Over 700 kg rejected | actual=0
+T17 | PASS | Greedy skips non-fitting entry, continues with next | actual weight=700
+T18 | PASS | Empty selection when capacity is zero | total=0 kg, 0 points
+T19 | PASS | Equal rating entries supported | 2 items, rating 10
+T20 | FAIL | Change Order: combined experiment discount (-7 kg) | expected=27 kg, actual=34 kg
+T21 | FAIL | Change Order: secondary requires primary | expected=false, actual=true
+T22 | FAIL | Change Order: experiments 2,3,7 cannot all be selected | expected=false, actual=true
+T23 | FAIL | Greedy does not select secondary alone | capacity=10, selected secondary=true
+T24 | FAIL | Brute force includes independently found 58-point best subset | independent best: raw weight 702 kg minus 7 kg discount = 695 kg
+================Top 3 Brute Force Combinations================
+
+---------Rank 1---------
+Experiments: 
+
+[Experiment: Cosmic Rays (Secondary Band) | weight: 10 | rating: 5]
+
+Total Weight: 10
+Total Rating: 5
+
+---------Rank 2---------
+Experiments: 
+
+[Experiment: Seed Viability | weight: 7 | rating: 4]
+
+Total Weight: 7
+Total Rating: 4
+
+---------Rank 3---------
+Experiments: 
+
+Total Weight: 0
+Total Rating: 0
+T25 | FAIL | Brute force excludes secondary-only subset (10 kg capacity) | top-three contains forbidden secondary-only subset=true
+T26 | FAIL | Valid subsets agree with independent rule-aware oracle | expected valid=3338, actual valid=4652, 2^13=8192 candidate subsets
+T27 | REVIEW | Check instructor's Change Request | The actual Change Request was not provided; intended rules inferred from source comments
+T28 | REVIEW | Confirm experiment count | Original assignment lists 12; current program includes a 13th, apparently from Change Request
+T29 | REVIEW | DP extra credit | DynamicProgramming.java contains pseudocode comments, not an executable DP solution; extra credit not claimed
+T30 | REVIEW | Compile filename for submission | uploaded Main (1).java must be named Main.java to compile with public class Main
+SUMMARY: 15 PASS, 11 FAIL, 4 REVIEW; 30 total checks
